@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "DlcManager": {
+      "address": "0x1311E7A950313a8b0Eb0C11b199f3D62608dF243",
+      "startBlock": 2966101
+    }
+  }
+}
