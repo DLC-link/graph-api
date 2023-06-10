@@ -1,33 +1,7 @@
-type BTCPriceFetching @entity(immutable: true) {
+type BurnBtcNft @entity(immutable: true) {
   id: Bytes!
-  uuid: Bytes! # bytes32
-  caller: Bytes! # address
-  price: BigInt! # int256
-  eventSource: String! # string
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type CloseDLC @entity(immutable: true) {
-  id: Bytes!
-  uuid: Bytes! # bytes32
-  outcome: BigInt! # uint256
-  creator: Bytes! # address
-  eventSource: String! # string
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type CreateDLC @entity(immutable: true) {
-  id: Bytes!
-  uuid: Bytes! # bytes32
-  creator: Bytes! # address
-  receiver: Bytes! # address
-  emergencyRefundTime: BigInt! # uint256
-  nonce: BigInt! # uint256
-  eventSource: String! # string
+  dlcUUID: Bytes! # bytes32
+  nftId: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -36,44 +10,7 @@ type CreateDLC @entity(immutable: true) {
 type MintBtcNft @entity(immutable: true) {
   id: Bytes!
   dlcUUID: Bytes! # bytes32
-  creator: Bytes! # address
-  receiver: Bytes! # address
   btcDeposit: BigInt! # uint256
-  eventSource: String! # string
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type PostCloseDLC @entity(immutable: true) {
-  id: Bytes!
-  uuid: Bytes! # bytes32
-  outcome: BigInt! # uint256
-  actualClosingTime: BigInt! # uint256
-  eventSource: String! # string
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type PostCreateDLC @entity(immutable: true) {
-  id: Bytes!
-  uuid: Bytes! # bytes32
-  creator: Bytes! # address
-  receiver: Bytes! # address
-  emergencyRefundTime: BigInt! # uint256
-  nonce: BigInt! # uint256
-  eventSource: String! # string
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type PostMintBtcNft @entity(immutable: true) {
-  id: Bytes!
-  uuid: Bytes! # bytes32
-  nftId: BigInt! # uint256
-  eventSource: String! # string
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -109,10 +46,23 @@ type RoleRevoked @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type SetStatusFunded @entity(immutable: true) {
+type SetupVault @entity(immutable: true) {
   id: Bytes!
-  uuid: Bytes! # bytes32
-  eventSource: String! # string
+  dlcUUID: Bytes! # bytes32
+  btcDeposit: BigInt! # uint256
+  emergencyRefundTime: BigInt! # uint256
+  index: BigInt! # uint256
+  owner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StatusUpdate @entity(immutable: true) {
+  id: Bytes!
+  vaultid: BigInt! # uint256
+  dlcUUID: Bytes! # bytes32
+  newStatus: Int! # uint8
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

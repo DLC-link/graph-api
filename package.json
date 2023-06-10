@@ -1,13 +1,13 @@
 {
-  "name": "dlc-manager",
+  "name": "dlc-broker",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ dlc-manager",
-    "create-local": "graph create --node http://localhost:8020/ dlc-manager",
-    "remove-local": "graph remove --node http://localhost:8020/ dlc-manager",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dlc-manager",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ dlc-broker",
+    "create-local": "graph create --node http://localhost:8020/ dlc-broker",
+    "remove-local": "graph remove --node http://localhost:8020/ dlc-broker",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dlc-broker",
     "test": "graph test"
   },
   "dependencies": {

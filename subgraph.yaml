@@ -3,52 +3,40 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: DlcManager
+    name: DlcBroker
     network: sepolia
     source:
-      address: "0x1311E7A950313a8b0Eb0C11b199f3D62608dF243"
-      abi: DlcManager
-      startBlock: 2966101
+      address: "0x402808d7b3D3C28B0B8D43c4704012FEe47cA3Ba"
+      abi: DlcBroker
+      startBlock: 3237068
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - BTCPriceFetching
-        - CloseDLC
-        - CreateDLC
+        - BurnBtcNft
         - MintBtcNft
-        - PostCloseDLC
-        - PostCreateDLC
-        - PostMintBtcNft
         - RoleAdminChanged
         - RoleGranted
         - RoleRevoked
-        - SetStatusFunded
+        - SetupVault
+        - StatusUpdate
       abis:
-        - name: DlcManager
-          file: ./abis/DlcManager.json
+        - name: DlcBroker
+          file: ./abis/DlcBroker.json
       eventHandlers:
-        - event: BTCPriceFetching(bytes32,address,int256,string)
-          handler: handleBTCPriceFetching
-        - event: CloseDLC(bytes32,uint256,address,string)
-          handler: handleCloseDLC
-        - event: CreateDLC(bytes32,address,address,uint256,uint256,string)
-          handler: handleCreateDLC
-        - event: MintBtcNft(bytes32,address,address,uint256,string)
+        - event: BurnBtcNft(bytes32,uint256)
+          handler: handleBurnBtcNft
+        - event: MintBtcNft(bytes32,uint256)
           handler: handleMintBtcNft
-        - event: PostCloseDLC(bytes32,uint256,uint256,string)
-          handler: handlePostCloseDLC
-        - event: PostCreateDLC(bytes32,address,address,uint256,uint256,string)
-          handler: handlePostCreateDLC
-        - event: PostMintBtcNft(bytes32,uint256,string)
-          handler: handlePostMintBtcNft
         - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
           handler: handleRoleAdminChanged
         - event: RoleGranted(indexed bytes32,indexed address,indexed address)
           handler: handleRoleGranted
         - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
           handler: handleRoleRevoked
-        - event: SetStatusFunded(bytes32,string)
-          handler: handleSetStatusFunded
-      file: ./src/dlc-manager.ts
+        - event: SetupVault(bytes32,uint256,uint256,uint256,address)
+          handler: handleSetupVault
+        - event: StatusUpdate(uint256,bytes32,uint8)
+          handler: handleStatusUpdate
+      file: ./src/dlc-broker.ts
